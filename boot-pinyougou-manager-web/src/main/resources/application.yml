@@ -1,0 +1,16 @@
+dubbo:
+  application:
+    name: boot-pinyougou-manager-web
+  registry:
+    address: zookeeper://192.168.239.13:2181
+  monitor:
+    protocol: registry
+server:
+  port: 8091
+
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql:///pinyougoudb
+    driver-class-name: com.mysql.cj.jdbc.Driver
