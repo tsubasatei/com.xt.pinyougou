@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -23,7 +24,7 @@ import java.util.List;
 @Controller
 public class BrandController {
 
-    @Reference
+    @Reference(timeout = 5000)
     private BrandService brandService;
 
     // 跳转页面
@@ -35,7 +36,7 @@ public class BrandController {
     // 新增
     @ResponseBody
     @PostMapping("/brand")
-    public Result save(Brand brand) {
+    public Result save(@RequestBody Brand brand) {
         Result result = new Result();
         try {
             boolean flag = brandService.save(brand);
@@ -56,7 +57,7 @@ public class BrandController {
     // 更新
     @ResponseBody
     @PutMapping("/brand")
-    public Result update(Brand brand) {
+    public Result update(@RequestBody Brand brand) {
         Result result = new Result();
         try {
             boolean flag = brandService.updateById(brand);
@@ -81,6 +82,32 @@ public class BrandController {
         Result result = new Result();
         try {
             boolean flag = brandService.removeById(id);
+            if (flag) {
+                result.setSuccess(true);
+                result.setMessage("删除成功！");
+            } else {
+                result.setSuccess(false);
+                result.setMessage("删除失败！");
+            }
+        } catch (Exception e) {
+            result.setSuccess(true);
+            result.setMessage(e.getMessage());
+        }
+        return result;
+    }
+
+    /**
+     * 批量删除
+     * 不写 @ResponseBody, 会报如下错误
+     * org.thymeleaf.exceptions.TemplateInputException:
+     * Error resolving template [deleteBatch/22], template might not exist or might not be accessible by any of the configured Template Resolvers
+     */
+    @ResponseBody
+    @DeleteMapping("/deleteBatch/{ids}")
+    public Result deleteBatch(@PathVariable Integer[] ids) {
+        Result result = new Result();
+        try {
+            boolean flag = brandService.removeByIds(Arrays.asList(ids));
             if (flag) {
                 result.setSuccess(true);
                 result.setMessage("删除成功！");
@@ -120,8 +147,8 @@ public class BrandController {
      * @return
      */
     @ResponseBody
-    @GetMapping("/brand/page")
-    public IPage<Brand> list(Integer currentPage, Integer pageNum, Brand brand) {
+    @PostMapping("/brand/page")
+    public IPage<Brand> list(Integer currentPage, Integer pageNum, @RequestBody Brand brand) {
         IPage<Brand> page = brandService.selectPage(currentPage, pageNum, brand);
         return page;
     }
