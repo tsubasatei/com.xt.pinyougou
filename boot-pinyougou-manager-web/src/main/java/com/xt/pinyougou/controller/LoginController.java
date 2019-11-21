@@ -5,7 +5,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 /**
@@ -17,13 +17,14 @@ public class LoginController {
     @PostMapping("/user/login")
     public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password,
-                        HttpServletRequest request,
+                        HttpSession session,
                         Map<String, Object> map) {
         if (!StringUtils.isEmpty(username) && password.equals("123456")) {
-            request.getSession().setAttribute("loginUser", username);
+            session.setAttribute("loginUser", username);
             // 登录成功，防止表单重复提交，可以重定向到主页
-//            return "redirect:/main";
-            return "dashboard";
+//            return "admin/index";
+            // 登录成功，防止表单重复提交，可以重定向到主页
+            return "redirect:/admin/index";
         }
         map.put("msg", "用户名或密码不正确");
         return "login";

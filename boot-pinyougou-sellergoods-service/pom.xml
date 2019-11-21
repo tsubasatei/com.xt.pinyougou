@@ -48,6 +48,7 @@
             <version>${dubbo-boot.version}</version>
         </dependency>
 
+
     </dependencies>
 
     <build>

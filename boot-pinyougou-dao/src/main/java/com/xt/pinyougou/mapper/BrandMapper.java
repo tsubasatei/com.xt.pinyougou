@@ -1,7 +1,7 @@
 package com.xt.pinyougou.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.xt.pinyougou.entity.Brand;
+import com.xt.pinyougou.pojo.Brand;
 
 /**
  * <p>
