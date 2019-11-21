@@ -2,18 +2,15 @@ package com.xt.pinyougou.controller;
 
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.xt.entity.Result;
 import com.xt.pinyougou.pojo.Brand;
 import com.xt.pinyougou.service.BrandService;
-import org.springframework.util.StringUtils;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * <p>
@@ -23,14 +20,20 @@ import java.util.Map;
  * @author xt
  * @since 2019-11-20
  */
-@RestController
-//@RequestMapping("/brand")
+@Controller
 public class BrandController {
 
     @Reference
     private BrandService brandService;
 
+    // 跳转页面
+    @GetMapping("/admin/brand.html")
+    public String brand() {
+        return "admin/brand";
+    }
+
     // 新增
+    @ResponseBody
     @PostMapping("/brand")
     public Result save(Brand brand) {
         Result result = new Result();
@@ -51,6 +54,7 @@ public class BrandController {
     }
 
     // 更新
+    @ResponseBody
     @PutMapping("/brand")
     public Result update(Brand brand) {
         Result result = new Result();
@@ -71,6 +75,7 @@ public class BrandController {
     }
 
     // 删除
+    @ResponseBody
     @DeleteMapping("/brand/{id}")
     public Result delete(@PathVariable Integer id) {
         Result result = new Result();
@@ -91,6 +96,7 @@ public class BrandController {
     }
 
     // 查询
+    @ResponseBody
     @GetMapping("/brand/{id}")
     public Brand findOne(@PathVariable Integer id){
         Brand brand = brandService.getById(id);
@@ -98,6 +104,7 @@ public class BrandController {
     }
 
     // 查询列表
+    @ResponseBody
     @GetMapping("/brands")
     public List<Brand> list() {
         List<Brand> list = brandService.list();
@@ -107,16 +114,15 @@ public class BrandController {
     /**
      * 分页条件查询
      * Mybatis-Plus3 的 QueryWrapper 不支持 dubbo 序列化，自己写一个 service 方法
-     * @param pageSize
+     * @param currentPage
      * @param pageNum
      * @param brand
      * @return
      */
+    @ResponseBody
     @GetMapping("/brand/page")
-    public IPage<Brand> list(@RequestParam(value = "pageSize", defaultValue = "1") Integer pageSize,
-                             @RequestParam(value = "pageNum", defaultValue = "10") Integer pageNum,
-                             Brand brand) {
-        IPage<Brand> page = brandService.selectPage(pageSize, pageNum, brand);
+    public IPage<Brand> list(Integer currentPage, Integer pageNum, Brand brand) {
+        IPage<Brand> page = brandService.selectPage(currentPage, pageNum, brand);
         return page;
     }
 

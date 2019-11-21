@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,26 +9,11 @@
 
 		<title>运营商后台管理系统</title>
 
-		<link rel="stylesheet" href="/static/asserts/plugins/bootstrap/css/bootstrap.min.css" th:href="@{/static/asserts/plugins/bootstrap/css/bootstrap.min.css}">
-		<link rel="stylesheet" href="/static/asserts/plugins/adminLTE/css/AdminLTE.css" th:href="@{/static/asserts/plugins/adminLTE/css/AdminLTE.css}">
-		<link rel="stylesheet" href="/static/asserts/plugins/adminLTE/css/skins/_all-skins.min.css" th:href="@{/static/asserts/plugins/adminLTE/css/skins/_all-skins.min.css}">
-		<link rel="stylesheet" href="/static/asserts/css/style.css" th:href="@{/static/asserts/css/style.css}">
+		<link rel="stylesheet" href="/static/asserts/plugins/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/static/asserts/plugins/adminLTE/css/AdminLTE.css">
+		<link rel="stylesheet" href="/static/asserts/plugins/adminLTE/css/skins/_all-skins.min.css" >
+		<link rel="stylesheet" href="/static/asserts/css/style.css">
 
-		<script src="/static/asserts/plugins/jQuery/jquery-2.2.3.min.js" th:href="@{/static/asserts/plugins/jQuery/jquery-2.2.3.min.js}"></script>
-		<script src="/static/asserts/plugins/jQueryUI/jquery-ui.min.js" th:href="@{/static/asserts/plugins/jQueryUI/jquery-ui.min.js}"></script>
-		<script src="/static/asserts/plugins/bootstrap/js/bootstrap.min.js" th:href="@{/static/asserts/plugins/bootstrap/js/bootstrap.min.js}"></script>
-
-		<script src="/static/asserts/plugins/adminLTE/js/app.min.js"></script>
-
-		<script type="text/javascript">
-            function SetIFrameHeight(){
-                var iframeid = document.getElementById("iframe"); //iframe id
-                if (document.getElementById){
-                    iframeid.height = document.documentElement.clientHeight;
-                }
-            }
-
-		</script>
 	</head>
 
 	<body class="hold-transition skin-green sidebar-mini" >
@@ -68,7 +53,7 @@
 												<!-- start message -->
 												<a href="#">
 													<div class="pull-left">
-														<img src="/static/asserts/img/user2-160x160.jpg" th:src="@{/static/asserts/img/user2-160x160.jpg}" class="img-circle" alt="User Image">
+														<img src="/static/asserts/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 													</div>
 													<h4>
 														系统消息
@@ -81,7 +66,7 @@
 											<li>
 												<a href="#">
 													<div class="pull-left">
-														<img src="/static/asserts/img/user3-128x128.jpg" th:src="@{/static/asserts/img/user3-128x128.jpg}" class="img-circle" alt="User Image">
+														<img src="/static/asserts/img/user3-128x128.jpg" class="img-circle" alt="User Image">
 													</div>
 													<h4>
 														团队消息
@@ -93,7 +78,7 @@
 											<li>
 												<a href="#">
 													<div class="pull-left">
-														<img src="/static/asserts/img/user4-128x128.jpg" th:src="@{/static/asserts/img/user4-128x128.jpg}" class="img-circle" alt="User Image">
+														<img src="/static/asserts/img/user4-128x128.jpg" class="img-circle" alt="User Image">
 													</div>
 													<h4>
 														Developers
@@ -105,7 +90,7 @@
 											<li>
 												<a href="#">
 													<div class="pull-left">
-														<img src="/static/asserts/img/user3-128x128.jpg" th:src="@{/static/asserts/img/user3-128x128.jpg}" class="img-circle" alt="User Image">
+														<img src="/static/asserts/img/user3-128x128.jpg" class="img-circle" alt="User Image">
 													</div>
 													<h4>
 														Sales Department
@@ -117,7 +102,7 @@
 											<li>
 												<a href="#">
 													<div class="pull-left">
-														<img src="/static/asserts/img/user4-128x128.jpg" th:src="@{/static/asserts/img/user4-128x128.jpg}" class="img-circle" alt="User Image">
+														<img src="/static/asserts/img/user4-128x128.jpg" class="img-circle" alt="User Image">
 													</div>
 													<h4>
 														Reviewers
@@ -253,13 +238,13 @@
 							<!-- User Account: style can be found in dropdown.less -->
 							<li class="dropdown user user-menu">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<img src="/static/asserts/img/user2-160x160.jpg" th:src="@{/static/asserts/img/user2-160x160.jpg}" class="user-image" alt="User Image">
+									<img src="/static/asserts/img/user2-160x160.jpg" class="user-image" alt="User Image">
 									<span class="hidden-xs">测试用户</span>
 								</a>
 								<ul class="dropdown-menu">
 									<!-- User image -->
 									<li class="user-header">
-										<img src="/static/asserts/img/user2-160x160.jpg" th:src="@{/static/asserts/img/user2-160x160.jpg}" class="img-circle" alt="User Image">
+										<img src="/static/asserts/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
 										<p>
 											测试用户 - 马小白
@@ -292,7 +277,7 @@
 					<!-- Sidebar user panel -->
 					<div class="user-panel">
 						<div class="pull-left image">
-							<img src="/static/asserts/img/user2-160x160.jpg" th:src="@{/static/asserts/img/user2-160x160.jpg}" class="img-circle" alt="User Image">
+							<img src="/static/asserts/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 						</div>
 						<div class="pull-left info">
 							<p> 测试用户</p>
@@ -342,7 +327,7 @@
 							<ul class="treeview-menu">
 
 								<li id="admin-login">
-									<a href="/brand/brands" target="iframe">
+									<a href="/admin/brand.html" target="iframe">
 										<i class="fa fa-circle-o"></i>品牌管理
 									</a>
 								</li>
@@ -418,6 +403,22 @@
 
 		</div>
 
+		<script src="/static/asserts/plugins/jQuery/jquery-2.2.3.min.js"></script>
+		<script src="/static/asserts/plugins/jQueryUI/jquery-ui.min.js"></script>
+		<script src="/static/asserts/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+		<script src="/static/asserts/plugins/adminLTE/js/app.min.js"></script>
+		<script src="/static/asserts/plugins/angularjs/angular.min.js"></script>
+
+		<script type="text/javascript">
+            function SetIFrameHeight(){
+                var iframeid = document.getElementById("iframe"); //iframe id
+                if (document.getElementById){
+                    iframeid.height = document.documentElement.clientHeight;
+                }
+            }
+
+		</script>
 	</body>
 
 </html>

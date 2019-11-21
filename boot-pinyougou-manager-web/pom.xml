@@ -35,6 +35,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>com.xt.pinyougou</groupId>
             <artifactId>boot-pinyougou-sellergoods-interface</artifactId>
@@ -48,7 +49,7 @@
             <version>${dubbo-boot.version}</version>
         </dependency>
 
-        <!-- mysql -->
+        <!-- 不引入mysql，数据源有问题，启动不了 -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -59,8 +60,15 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
-            <version>2.1.4.RELEASE</version>
         </dependency>
+
+        <!-- HTML扫描器和标签补偿器 -->
+        <dependency>
+            <groupId>net.sourceforge.nekohtml</groupId>
+            <artifactId>nekohtml</artifactId>
+            <version>1.9.22</version>
+        </dependency>
+
 
         <!-- 引入 jQuery-webjar -->
         <dependency>

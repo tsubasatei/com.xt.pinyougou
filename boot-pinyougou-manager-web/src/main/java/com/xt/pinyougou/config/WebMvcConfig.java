@@ -16,14 +16,14 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
     }
 
-    // 拦截器
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LoginInterceptor())
-                .addPathPatterns("/**")
-                .excludePathPatterns("/", "/login", "/index.html", "/user/login", "/static/**", "/webjars/**");
-    }
-
+//    // 拦截器
+//    @Override
+//    public void addInterceptors(InterceptorRegistry registry) {
+//        registry.addInterceptor(new LoginInterceptor())
+//                .addPathPatterns("/**")
+//                .excludePathPatterns("/", "/login", "/index.html", "/user/login", "/static/**", "/webjars/**");
+//    }
+//
     // 控制器
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
