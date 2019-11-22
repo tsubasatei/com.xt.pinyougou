@@ -20,3 +20,5 @@ server:
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+# classpath后面写个星*，扫面所有模块
+  mapper-locations: classpath*:/mapper/*.xml

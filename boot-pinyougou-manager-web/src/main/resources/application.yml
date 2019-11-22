@@ -1,6 +1,6 @@
 dubbo:
   application:
-    name: boot-pinyougou-manager-web
+    name: boot-pinyougou-mapper-web
   registry:
     address: zookeeper://192.168.239.13:2181
 #  monitor:

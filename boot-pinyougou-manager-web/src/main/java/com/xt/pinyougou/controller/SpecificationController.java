@@ -1,37 +1,39 @@
 package com.xt.pinyougou.controller;
 
-
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.xt.entity.Result;
 import com.xt.pinyougou.pojo.Brand;
-import com.xt.pinyougou.service.BrandService;
+import com.xt.pinyougou.pojo.Specification;
+import com.xt.pinyougou.pojogroup.SpecificationAndOption;
+import com.xt.pinyougou.service.SpecificationService;
 import org.springframework.web.bind.annotation.*;
-
 
 import java.util.Arrays;
 import java.util.List;
 
+
 /**
  * <p>
- *  品牌：前端控制器
+ *  规格管理：前端控制器
  * </p>
  *
  * @author xt
- * @since 2019-11-20
+ * @since 2019-11-22
  */
 @RestController
-public class BrandController {
+public class SpecificationController {
 
     @Reference(timeout = 5000)
-    private BrandService brandService;
+    private SpecificationService specificationService;
 
     // 新增
-    @PostMapping("/brand")
-    public Result save(@RequestBody Brand brand) {
+    @PostMapping("/specification")
+    public Result save(@RequestBody SpecificationAndOption specificationAndOption) {
         Result result = new Result();
         try {
-            boolean flag = brandService.save(brand);
+            // 保存组
+            boolean flag = specificationService.saveGroup(specificationAndOption);
             if (flag) {
                 result.setSuccess(true);
                 result.setMessage("添加成功！");
@@ -47,11 +49,11 @@ public class BrandController {
     }
 
     // 更新
-    @PutMapping("/brand")
-    public Result update(@RequestBody Brand brand) {
+    @PutMapping("/specification")
+    public Result update(@RequestBody SpecificationAndOption specificationAndOption) {
         Result result = new Result();
         try {
-            boolean flag = brandService.updateById(brand);
+            boolean flag = specificationService.updateGroup(specificationAndOption);
             if (flag) {
                 result.setSuccess(true);
                 result.setMessage("更新成功！");
@@ -67,11 +69,11 @@ public class BrandController {
     }
 
     // 删除
-    @DeleteMapping("/brand/{id}")
+    @DeleteMapping("/specification/{id}")
     public Result delete(@PathVariable Integer id) {
         Result result = new Result();
         try {
-            boolean flag = brandService.removeById(id);
+            boolean flag = specificationService.deleteGroup(id);
             if (flag) {
                 result.setSuccess(true);
                 result.setMessage("删除成功！");
@@ -92,11 +94,12 @@ public class BrandController {
      * org.thymeleaf.exceptions.TemplateInputException:
      * Error resolving template [deleteBatch/22], template might not exist or might not be accessible by any of the configured Template Resolvers
      */
-    @DeleteMapping("/brand/deleteBatch/{ids}")
+    @ResponseBody
+    @DeleteMapping("/specification/deleteBatch/{ids}")
     public Result deleteBatch(@PathVariable Integer[] ids) {
         Result result = new Result();
         try {
-            boolean flag = brandService.removeByIds(Arrays.asList(ids));
+            boolean flag = specificationService.deleteGroupBatch(Arrays.asList(ids));
             if (flag) {
                 result.setSuccess(true);
                 result.setMessage("删除成功！");
@@ -112,16 +115,16 @@ public class BrandController {
     }
 
     // 查询
-    @GetMapping("/brand/{id}")
-    public Brand findOne(@PathVariable Integer id){
-        Brand brand = brandService.getById(id);
-        return brand;
+    @GetMapping("/specification/{id}")
+    public SpecificationAndOption findOne(@PathVariable Long id){
+        SpecificationAndOption specificationAndOption = specificationService.findOne(id);
+        return specificationAndOption;
     }
 
     // 查询列表
-    @GetMapping("/brands")
-    public List<Brand> list() {
-        List<Brand> list = brandService.list();
+    @GetMapping("/specifications")
+    public List<Specification> list() {
+        List<Specification> list = specificationService.list();
         return list;
     }
 
@@ -130,14 +133,13 @@ public class BrandController {
      * Mybatis-Plus3 的 QueryWrapper 不支持 dubbo 序列化，自己写一个 service 方法
      * @param currentPage
      * @param pageNum
-     * @param brand
+     * @param specification
      * @return
      */
-    @PostMapping("/brand/page")
-    public IPage<Brand> list(Integer currentPage, Integer pageNum, @RequestBody Brand brand) {
-        IPage<Brand> page = brandService.selectPage(currentPage, pageNum, brand);
+    @PostMapping("/specification/page")
+    public IPage<Specification> list(Integer currentPage, Integer pageNum, @RequestBody Specification specification) {
+        IPage<Specification> page = specificationService.selectPage(currentPage, pageNum, specification);
         return page;
     }
-
 }
 

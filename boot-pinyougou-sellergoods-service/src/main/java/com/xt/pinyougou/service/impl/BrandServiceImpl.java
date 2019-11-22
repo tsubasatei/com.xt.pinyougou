@@ -23,7 +23,6 @@ public class BrandServiceImpl extends ServiceImpl<BrandMapper, Brand> implements
 
     @Override
     public IPage<Brand> selectPage(Integer pageSize, Integer pageNum, Brand brand) {
-        IPage<Brand> result;
 
         QueryWrapper<Brand> queryWrapper = new QueryWrapper<>();
         if (!StringUtils.isEmpty(brand.getName())) {
@@ -34,9 +33,7 @@ public class BrandServiceImpl extends ServiceImpl<BrandMapper, Brand> implements
 //            queryWrapper.like("first_char", brand.getFirstChar());
             queryWrapper.lambda().like(Brand::getFirstChar, brand.getFirstChar());
         }
-        result = baseMapper.selectPage(new Page<>(pageSize, pageNum), queryWrapper);
-
-
+        IPage<Brand>  result = baseMapper.selectPage(new Page<>(pageSize, pageNum), queryWrapper);
         return result;
 
     }

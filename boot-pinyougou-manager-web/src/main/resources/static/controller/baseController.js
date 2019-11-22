@@ -36,4 +36,9 @@ app.controller('baseController', function ($scope) {
         }
     };
 
+    // 全选 有问题？？？
+    // $scope.selectAll = function ($event) {
+    //     var check = $event.target.checked;
+    //     $("input[type='checkbox']").prop("checked", check);
+    // }
 });
