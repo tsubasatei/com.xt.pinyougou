@@ -22,4 +22,10 @@ public class AdminController {
     public String specification() {
         return "admin/specification";
     }
+
+    // 模板管理
+    @GetMapping("/type_template.html")
+    public String typeTemplate() {
+        return "admin/type_template";
+    }
 }

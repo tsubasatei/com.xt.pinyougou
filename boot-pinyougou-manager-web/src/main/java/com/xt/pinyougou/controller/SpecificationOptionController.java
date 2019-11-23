@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
- *  前端控制器
+ *  规格选项：前端控制器
  * </p>
  *
  * @author xt
  * @since 2019-11-22
  */
 @RestController
-@RequestMapping("/manager/specification-option")
+@RequestMapping("/specification-option")
 public class SpecificationOptionController {
 
 }

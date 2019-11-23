@@ -6,6 +6,7 @@ import com.xt.pinyougou.pojo.Specification;
 import com.xt.pinyougou.pojogroup.SpecificationAndOption;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -34,4 +35,7 @@ public interface SpecificationService extends IService<Specification> {
 
     // 批量删除
     boolean deleteGroupBatch(List<Integer> asList);
+
+    // 品牌列表
+    List<Map<String, Object>> selectOptionList();
 }

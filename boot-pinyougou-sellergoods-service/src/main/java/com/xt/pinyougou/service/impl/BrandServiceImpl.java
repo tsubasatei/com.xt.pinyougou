@@ -10,6 +10,9 @@ import com.xt.pinyougou.mapper.BrandMapper;
 import com.xt.pinyougou.service.BrandService;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * <p>
  *  品牌：服务实现类
@@ -18,7 +21,7 @@ import org.springframework.util.StringUtils;
  * @author xt
  * @since 2019-11-20
  */
-@Service
+@Service(timeout = 5000)
 public class BrandServiceImpl extends ServiceImpl<BrandMapper, Brand> implements BrandService {
 
     @Override
@@ -36,5 +39,13 @@ public class BrandServiceImpl extends ServiceImpl<BrandMapper, Brand> implements
         IPage<Brand>  result = baseMapper.selectPage(new Page<>(pageSize, pageNum), queryWrapper);
         return result;
 
+    }
+
+    @Override
+    public List<Map<String, Object>> selectOptionList() {
+        QueryWrapper<Brand> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select("id", "name as text");
+        List<Map<String, Object>> maps = baseMapper.selectMaps(queryWrapper);
+        return maps;
     }
 }

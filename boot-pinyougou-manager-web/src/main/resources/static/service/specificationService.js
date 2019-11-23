@@ -1,6 +1,6 @@
-// 品牌服务
+// 规格服务
 app.service('specificationService', function ($http) {
-    // 查询品牌列表
+    // 查询列表
     this.findAll = function () {
         return $http.get('/specifications');
     };
@@ -40,5 +40,10 @@ app.service('specificationService', function ($http) {
     // 条件查询
     this.search = function (currentPage, pageNum, searchEntity) {
         return $http.post('/specification/page?currentPage=' + currentPage + '&pageNum=' + pageNum, searchEntity);
+    };
+
+    // 读取规格列表
+    this.selectSpecList = function () {
+        return $http.get('/specification/list');
     }
 });

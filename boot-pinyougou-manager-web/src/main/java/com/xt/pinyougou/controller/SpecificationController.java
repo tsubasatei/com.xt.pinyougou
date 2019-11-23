@@ -3,7 +3,6 @@ package com.xt.pinyougou.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.xt.entity.Result;
-import com.xt.pinyougou.pojo.Brand;
 import com.xt.pinyougou.pojo.Specification;
 import com.xt.pinyougou.pojogroup.SpecificationAndOption;
 import com.xt.pinyougou.service.SpecificationService;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -140,6 +140,15 @@ public class SpecificationController {
     public IPage<Specification> list(Integer currentPage, Integer pageNum, @RequestBody Specification specification) {
         IPage<Specification> page = specificationService.selectPage(currentPage, pageNum, specification);
         return page;
+    }
+
+    /**
+     * 读取规格列表
+     */
+    @GetMapping("/specification/list")
+    public List<Map<String, Object>> selectList() {
+        List<Map<String, Object>> maps = specificationService.selectOptionList();
+        return maps;
     }
 }
 

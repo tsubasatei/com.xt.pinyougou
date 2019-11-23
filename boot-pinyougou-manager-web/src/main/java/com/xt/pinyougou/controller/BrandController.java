@@ -2,6 +2,7 @@ package com.xt.pinyougou.controller;
 
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.xt.entity.Result;
 import com.xt.pinyougou.pojo.Brand;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -139,5 +141,16 @@ public class BrandController {
         return page;
     }
 
+    /**
+     * 读取品牌列表
+     * @return
+     */
+    @GetMapping("/brand/list")
+    public List<Map<String, Object>> selectlist() {
+        List<Map<String, Object>> maps = brandService.selectOptionList();
+        return maps;
+    }
+
 }
+
 

@@ -1,10 +1,10 @@
-// 品牌控制器
+// 规格控制器
 app.controller('specificationController', function ($scope, $controller, specificationService) {
 
     // 第一个参数：继承的父类
     $controller('baseController', {$scope : $scope}); // 伪继承
 
-    // 查询品牌列表
+    // 查询列表
     $scope.findAll = function() {
         specificationService.findAll().success(
             function (response) {

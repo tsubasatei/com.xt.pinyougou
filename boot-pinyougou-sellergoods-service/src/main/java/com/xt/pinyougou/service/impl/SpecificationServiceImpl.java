@@ -16,16 +16,17 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
- *  服务实现类
+ *  规格服务实现类
  * </p>
  *
  * @author xt
  * @since 2019-11-22
  */
-@Service
+@Service(timeout = 5000)
 public class SpecificationServiceImpl extends ServiceImpl<SpecificationMapper, Specification> implements SpecificationService {
 
     @Autowired
@@ -124,5 +125,13 @@ public class SpecificationServiceImpl extends ServiceImpl<SpecificationMapper, S
         queryWrapper.lambda().in(SpecificationOption::getSpecId, ids);
         boolean flag = optionService.remove(queryWrapper);
         return flag;
+    }
+
+    @Override
+    public List<Map<String, Object>> selectOptionList() {
+        QueryWrapper<Specification> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select("id", "spec_name as text");
+        List<Map<String, Object>> maps = baseMapper.selectMaps(queryWrapper);
+        return maps;
     }
 }
