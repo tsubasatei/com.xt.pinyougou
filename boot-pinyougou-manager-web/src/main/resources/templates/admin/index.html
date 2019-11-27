@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -258,7 +258,10 @@
 											<a href="#" class="btn btn-default btn-flat">修改密码</a>
 										</div>
 										<div class="pull-right">
-											<a href="#" class="btn btn-default btn-flat">注销</a>
+											<form action="/logout" th:action="@{/logout}" method="post" id="logoutForm">
+												<input type="submit" class="btn btn-default btn-flat" value="注销">
+												<!--<a href="#" class="btn btn-default btn-flat">注销</a>-->
+											</form>
 										</div>
 									</li>
 								</ul>
