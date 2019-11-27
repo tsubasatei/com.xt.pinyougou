@@ -1,0 +1,18 @@
+dubbo:
+  application:
+    name: boot-pinyougou-shop-web
+  registry:
+    address: zookeeper://192.168.239.13:2181
+server:
+  port: 8092
+
+# 不添加数据源启动不起来？
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql:///pinyougoudb
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  thymeleaf:
+    cache: false

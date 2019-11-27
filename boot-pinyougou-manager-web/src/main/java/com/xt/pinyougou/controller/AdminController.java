@@ -34,4 +34,10 @@ public class AdminController {
     public String typeTemplate() {
         return "admin/type_template";
     }
+
+    // 商家审核
+    @GetMapping("/seller_1.html")
+    public String seller1() {
+        return "admin/seller_1";
+    }
 }
