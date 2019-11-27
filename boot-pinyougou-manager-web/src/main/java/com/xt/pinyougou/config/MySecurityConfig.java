@@ -36,7 +36,10 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
          */
         http.headers().frameOptions().sameOrigin();
 
-        http.logout().logoutSuccessUrl("/login");
+        http.logout().logoutUrl("/logout").logoutSuccessUrl("/login");
+
+        // 关闭跨域
+        http.csrf().disable();
     }
 
     @Override
