@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin")
 public class AdminController {
 
+    // 家目录
+    @GetMapping("/home.html")
+    public String home() {
+        return "admin/home";
+    }
+
     // 品牌管理
     @GetMapping("/brand.html")
     public String brand() {
