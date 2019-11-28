@@ -37,4 +37,9 @@ app.service('sellerService', function ($http) {
     this.search = function (currentPage, pageNum, searchEntity) {
         return $http.post('/seller/page?currentPage=' + currentPage + '&pageNum=' + pageNum, searchEntity);
     };
+
+    // 更新状态
+    this.updateStatus = function(sellerId, status) {
+        return $http.get('/seller/updateStatus/' + sellerId + '/' + status);
+    }
 });

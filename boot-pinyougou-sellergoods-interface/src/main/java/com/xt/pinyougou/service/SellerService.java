@@ -15,4 +15,6 @@ import com.xt.pinyougou.pojo.Seller;
 public interface SellerService extends IService<Seller> {
 
     IPage<Seller> selectPage(Integer currentPage, Integer pageNum, Seller seller);
+
+    void updateStatus(String sellerId, String status);
 }

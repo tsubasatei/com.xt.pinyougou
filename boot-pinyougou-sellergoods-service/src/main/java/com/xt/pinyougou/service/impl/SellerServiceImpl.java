@@ -21,6 +21,13 @@ import com.xt.pinyougou.service.SellerService;
 public class SellerServiceImpl extends ServiceImpl<SellerMapper, Seller> implements SellerService {
 
     @Override
+    public void updateStatus(String sellerId, String status) {
+        Seller seller = baseMapper.selectById(sellerId);
+        seller.setStatus(status);
+        baseMapper.updateById(seller);
+    }
+
+    @Override
     public IPage<Seller> selectPage(Integer currentPage, Integer pageNum, Seller seller) {
         QueryWrapper<Seller> queryWrapper = new QueryWrapper<>();
         queryWrapper.lambda().eq(Seller::getStatus, seller.getStatus());

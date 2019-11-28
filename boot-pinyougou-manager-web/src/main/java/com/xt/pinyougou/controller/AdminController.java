@@ -40,4 +40,16 @@ public class AdminController {
     public String seller1() {
         return "admin/seller_1";
     }
+
+    // 分类管理
+    @GetMapping("/item_cat.html")
+    public String itemCat() {
+        return "admin/item_cat";
+    }
+
+    // 商品审核
+    @GetMapping("/goods.html")
+    public String goods() {
+        return "admin/goods";
+    }
 }

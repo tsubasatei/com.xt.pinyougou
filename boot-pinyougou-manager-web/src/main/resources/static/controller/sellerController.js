@@ -4,19 +4,6 @@ app.controller('sellerController', function ($scope, $controller, sellerService)
     // 第一个参数：继承的父类
     $controller('baseController', {$scope : $scope}); // 伪继承
 
-    // 保存
-    $scope.add = function () {
-        sellerService.add($scope.entity).success(function (response) {
-            if (response.success) {
-                // 注册成功。跳转登录页面
-                location.href = '/login';
-
-            } else {
-                alert(response.message);
-            }
-        });
-    };
-
     // 详情
     $scope.findOne = function (id) {
         sellerService.findOne(id).success(
@@ -49,6 +36,19 @@ app.controller('sellerController', function ($scope, $controller, sellerService)
             function (response) {
                 $scope.list = response.records;
                 $scope.paginationConf.totalItems = response.total;
+            }
+        )
+    };
+
+    // 更新状态
+    $scope.updateStatus = function(sellerId, status) {
+        sellerService.updateStatus(sellerId, status).success(
+            function (response) {
+                if (response.success) {
+                    $scope.reloadList();
+                } else {
+                    alert(response.message);
+                }
             }
         )
     }
