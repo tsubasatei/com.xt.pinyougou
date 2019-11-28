@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -20,13 +21,24 @@ import java.util.List;
  * @since 2019-11-22
  */
 @RestController
+@RequestMapping("/typeTemplate")
 public class TypeTemplateController {
     
     @Reference
     private TypeTemplateService typeTemplateService;
 
+    /**
+     * 读取类型模板列表
+     * @return
+     */
+    @GetMapping("/findOptionList")
+    public List<Map<String, Object>> findOptionList() {
+        List<Map<String, Object>> list = typeTemplateService.findOptionList();
+        return list;
+    }
+
     // 新增
-    @PostMapping("/typeTemplate")
+    @PostMapping
     public Result save(@RequestBody TypeTemplate typeTemplate) {
         Result result = new Result();
         try {
@@ -47,7 +59,7 @@ public class TypeTemplateController {
     }
 
     // 更新
-    @PutMapping("/typeTemplate")
+    @PutMapping
     public Result update(@RequestBody TypeTemplate typeTemplate) {
         Result result = new Result();
         try {
@@ -67,7 +79,7 @@ public class TypeTemplateController {
     }
 
     // 删除
-    @DeleteMapping("/typeTemplate/{id}")
+    @DeleteMapping("/{id}")
     public Result delete(@PathVariable Long id) {
         Result result = new Result();
         try {
@@ -92,7 +104,7 @@ public class TypeTemplateController {
      * org.thymeleaf.exceptions.TemplateInputException:
      * Error resolving template [deleteBatch/22], template might not exist or might not be accessible by any of the configured Template Resolvers
      */
-    @DeleteMapping("/typeTemplate/deleteBatch/{ids}")
+    @DeleteMapping("/deleteBatch/{ids}")
     public Result deleteBatch(@PathVariable Integer[] ids) {
         Result result = new Result();
         try {
@@ -112,13 +124,13 @@ public class TypeTemplateController {
     }
 
     // 查询
-    @GetMapping("/typeTemplate/{id}")
+    @GetMapping("/{id}")
     public TypeTemplate findOne(@PathVariable Long id){
         TypeTemplate typeTemplate = typeTemplateService.getById(id);
         return typeTemplate;
     }
 
-//    // 查询列表
+    // 查询列表
     @GetMapping("/typeTemplates")
     public List<TypeTemplate> list() {
         List<TypeTemplate> list = typeTemplateService.list();
@@ -133,7 +145,7 @@ public class TypeTemplateController {
      * @param typeTemplate
      * @return
      */
-    @PostMapping("/typeTemplate/page")
+    @PostMapping("/page")
     public IPage<TypeTemplate> list(Integer currentPage, Integer pageNum, @RequestBody TypeTemplate typeTemplate) {
         IPage<TypeTemplate> page = typeTemplateService.selectPage(currentPage, pageNum, typeTemplate);
         return page;

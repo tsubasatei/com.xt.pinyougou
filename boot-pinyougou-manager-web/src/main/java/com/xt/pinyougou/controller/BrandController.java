@@ -95,7 +95,7 @@ public class BrandController {
      * Error resolving template [deleteBatch/22], template might not exist or might not be accessible by any of the configured Template Resolvers
      */
     @DeleteMapping("/brand/deleteBatch/{ids}")
-    public Result deleteBatch(@PathVariable Integer[] ids) {
+    public Result deleteBatch(@PathVariable Long[] ids) {
         Result result = new Result();
         try {
             boolean flag = brandService.removeByIds(Arrays.asList(ids));

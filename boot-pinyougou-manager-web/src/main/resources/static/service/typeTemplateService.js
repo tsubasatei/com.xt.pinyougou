@@ -1,8 +1,8 @@
 // 模板服务
 app.service('typeTemplateService', function ($http) {
     // 查询列表
-    this.findAll = function () {
-        return $http.get('/typeTemplates');
+    this.findTypeTemplateList = function () {
+        return $http.get('/typeTemplate/findOptionList');
     };
 
     // 分页查询

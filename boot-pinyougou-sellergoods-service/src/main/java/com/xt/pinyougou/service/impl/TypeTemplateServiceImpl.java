@@ -10,6 +10,9 @@ import com.xt.pinyougou.pojo.TypeTemplate;
 import com.xt.pinyougou.service.TypeTemplateService;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * <p>
  *  模板服务实现类
@@ -30,5 +33,13 @@ public class TypeTemplateServiceImpl extends ServiceImpl<TypeTemplateMapper, Typ
         }
         IPage<TypeTemplate>  result = baseMapper.selectPage(new Page<>(currentPage, pageNum), queryWrapper);
         return result;
+    }
+
+    @Override
+    public List<Map<String, Object>> findOptionList() {
+        QueryWrapper<TypeTemplate> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select("id", "name as text");
+        List<Map<String, Object>> maps = baseMapper.selectMaps(queryWrapper);
+        return maps;
     }
 }

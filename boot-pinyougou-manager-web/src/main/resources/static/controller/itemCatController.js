@@ -1,26 +1,12 @@
 // 品牌控制器
-app.controller('itemCatController', function ($scope, $controller, itemCatService) {
+app.controller('itemCatController', function ($scope, $controller, itemCatService, typeTemplateService) {
 
     // 第一个参数：继承的父类
     $controller('baseController', {$scope : $scope}); // 伪继承
 
-    // 查询品牌列表
-    $scope.findAll = function() {
-        itemCatService.findAll().success(
-            function (response) {
-                $scope.list=response; // 给列表变量赋值
-            }
-        )
-    };
-
-    // 分页查询
-    $scope.findPage = function (currentPage, pageNum) {
-        itemCatService.findPage(currentPage, pageNum).success(
-            function (response) {
-                $scope.list = response.records;
-                $scope.paginationConf.totalItems = response.total;
-            }
-        )
+    // 刷新
+    $scope.refresh = function() {
+        $scope.listByParentId($scope.parentId);
     };
 
     // 保存/更新
@@ -30,12 +16,13 @@ app.controller('itemCatController', function ($scope, $controller, itemCatServic
         if ($scope.entity.id != null) {
             object = itemCatService.update($scope.entity);
         } else { // 保存
+            $scope.entity.parentId = $scope.parentId;  //赋予上级ID
             object = itemCatService.save($scope.entity);
         }
         object.success(function (response) {
             if (response.success) {
                 alert(response.message);
-                $scope.reloadList(); // 刷新
+                $scope.listByParentId($scope.parentId); // 刷新
             } else {
                 alert(response.message);
             }
@@ -52,34 +39,34 @@ app.controller('itemCatController', function ($scope, $controller, itemCatServic
     };
 
     // 删除
+    $scope.delete = function (id) {
+        itemCatService.delete(id).success(function (response) {
+            if (response.success) {
+                alert(response.message);
+                $scope.refresh(); // 刷新
+            } else {
+                alert(response.message);
+            }
+        });
+    };
+
+    // 批量删除
     $scope.deleteBatch = function () {
-        if(confirm('确定要删除品牌id为：' + $scope.selectIds + ' 的吗？')){
+        if(confirm('确定要删除商品分类id为：' + $scope.selectIds + ' 的吗？')){
             itemCatService.deleteBatch($scope.selectIds).success(function (response) {
                 if (response.success) {
                     alert(response.message);
-                    $scope.reloadList(); // 刷新
+                    $scope.refresh(); // 刷新
                 } else {
                     alert(response.message);
                 }
             });
         }
     };
-
-    // 初始查询条件
-    $scope.searchEntity={};
-
-    // 条件查询
-    $scope.search = function (currentPage, pageNum) {
-        itemCatService.search(currentPage, pageNum, $scope.searchEntity).success(
-            function (response) {
-                $scope.list = response.records;
-                $scope.paginationConf.totalItems = response.total;
-            }
-        )
-    };
-
+    
     // 查询子类列表
     $scope.listByParentId = function (parentId) {
+        $scope.parentId = parentId; //记住上级ID
         itemCatService.listByParentId(parentId).success(
             function (response) {
                 $scope.list = response;
@@ -99,6 +86,7 @@ app.controller('itemCatController', function ($scope, $controller, itemCatServic
 
     // 读取列表
     $scope.selectList = function(pEntity) {
+        $scope.selectIds = [];
         //如果为1级
         if ($scope.grade == 1) {
             $scope.entity_1 = null;
@@ -115,5 +103,18 @@ app.controller('itemCatController', function ($scope, $controller, itemCatServic
         }
         //查询此级下级列表
         $scope.listByParentId(pEntity.id);
+    };
+
+    // 父 ID
+    $scope.parentId = 0;
+
+    $scope.typeTemplateList = [];
+    // 读取类型模板列表
+    $scope.findTypeTemplateList = function () {
+        typeTemplateService.findTypeTemplateList().success(
+            function (response) {
+                $scope.typeTemplateList = response;
+            }
+        )
     }
 });

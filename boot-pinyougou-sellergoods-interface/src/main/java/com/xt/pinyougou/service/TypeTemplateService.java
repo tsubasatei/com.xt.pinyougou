@@ -4,6 +4,9 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xt.pinyougou.pojo.TypeTemplate;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * <p>
  *  模板服务类
@@ -15,4 +18,9 @@ import com.xt.pinyougou.pojo.TypeTemplate;
 public interface TypeTemplateService extends IService<TypeTemplate> {
 
     IPage<TypeTemplate> selectPage(Integer currentPage, Integer pageNum, TypeTemplate typeTemplate);
+
+    /**
+     * 读取类型模板列表
+     */
+    List<Map<String, Object>> findOptionList();
 }

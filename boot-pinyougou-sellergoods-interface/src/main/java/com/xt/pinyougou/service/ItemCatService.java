@@ -21,4 +21,6 @@ public interface ItemCatService extends IService<ItemCat> {
      * @return
      */
     List<ItemCat> listByParentId(Long parentId);
+
+    Boolean deleteBatch(List<Long> asList);
 }
