@@ -24,7 +24,7 @@ public class ShopSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
             .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/admin/index")
+                .defaultSuccessUrl("/admin/index.html")
                 .and()
             .logout().logoutUrl("/logout").logoutSuccessUrl("/login")
                 .and()

@@ -2,6 +2,7 @@ package com.xt.pinyougou.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xt.pinyougou.pojo.Goods;
+import com.xt.pinyougou.pojogroup.GoodsGroup;
 
 /**
  * <p>
@@ -13,4 +14,5 @@ import com.xt.pinyougou.pojo.Goods;
  */
 public interface GoodsService extends IService<Goods> {
 
+    void add(GoodsGroup goodsGroup);
 }

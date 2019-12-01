@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8">
@@ -38,10 +38,10 @@
 					<div class="tab-content tab-wraped">
 						<div id="index" class="tab-pane">
 							<p>二维码登录，暂为官网二维码</p>
-							<img src="img/wx_cz.jpg" />
+							<img src="/static/img/wx_cz.jpg" />
 						</div>
 						<div id="profile" class="tab-pane  active">
-							<form class="sui-form" action="/login" method="post" id="loginForm">
+							<form class="sui-form" action="/login" th:action="@{/login}" method="post">
 								<div class="input-prepend"><span class="add-on loginname"></span>
 									<input id="prependedInput" name="username" type="text" placeholder="邮箱/用户名/手机号" class="span2 input-xfat">
 								</div>
