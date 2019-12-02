@@ -23,4 +23,9 @@ public interface TypeTemplateService extends IService<TypeTemplate> {
      * 读取类型模板列表
      */
     List<Map<String, Object>> findOptionList();
+
+    /**
+     * 查询规格列表
+     */
+    List<Map> findSpecList(Long id);
 }
