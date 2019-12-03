@@ -10,4 +10,10 @@ app.service('itemCatService', function ($http) {
     this.findOne = function (id) {
         return $http.get('/itemCat/' + id);
     };
+
+    // 全部列表
+    this.findAll = function() {
+        return $http.get('/itemCat/list');
+    }
+
 });

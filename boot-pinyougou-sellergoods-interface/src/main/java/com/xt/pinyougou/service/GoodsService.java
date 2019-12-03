@@ -1,5 +1,6 @@
 package com.xt.pinyougou.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xt.pinyougou.pojo.Goods;
 import com.xt.pinyougou.pojogroup.GoodsGroup;
@@ -15,4 +16,10 @@ import com.xt.pinyougou.pojogroup.GoodsGroup;
 public interface GoodsService extends IService<Goods> {
 
     void add(GoodsGroup goodsGroup);
+
+    void update(GoodsGroup goodsGroup);
+
+    IPage<Goods> selectPage(Integer currentPage, Integer pageNum, Goods goods);
+
+    GoodsGroup findOne(Long id);
 }
