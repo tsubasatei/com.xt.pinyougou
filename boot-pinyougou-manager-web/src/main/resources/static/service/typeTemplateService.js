@@ -40,5 +40,10 @@ app.service('typeTemplateService', function ($http) {
     // 条件查询
     this.search = function (currentPage, pageNum, searchEntity) {
         return $http.post('/typeTemplate/page?currentPage=' + currentPage + '&pageNum=' + pageNum, searchEntity);
-    }
+    };
+
+    // 查询规格列表
+    this.findSpecList = function (id) {
+        return $http.get('/typeTemplate/findSpecList/' + id);
+    };
 });

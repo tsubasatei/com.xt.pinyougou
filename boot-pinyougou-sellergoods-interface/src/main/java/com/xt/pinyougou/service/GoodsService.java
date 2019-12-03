@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.xt.pinyougou.pojo.Goods;
 import com.xt.pinyougou.pojogroup.GoodsGroup;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -22,4 +24,8 @@ public interface GoodsService extends IService<Goods> {
     IPage<Goods> selectPage(Integer currentPage, Integer pageNum, Goods goods);
 
     GoodsGroup findOne(Long id);
+
+    void updateStatus(Long[] ids, String status);
+
+    void deleteBatch(List<Long> asList);
 }

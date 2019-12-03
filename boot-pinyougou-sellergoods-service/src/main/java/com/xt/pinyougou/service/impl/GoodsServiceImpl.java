@@ -15,8 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
 /**
  * <p>
@@ -127,11 +129,28 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements
         return goodsGroup;
     }
 
+    @Transactional
+    @Override
+    public void updateStatus(Long[] ids, String status) {
+        List<Goods> goodsList = baseMapper.selectBatchIds(Arrays.asList(ids));
+        goodsList.forEach(goods -> goods.setAuditStatus(status));
+        for (Goods goods : goodsList) {
+            baseMapper.updateById(goods);
+        }
+    }
+
+    @Override
+    public void deleteBatch(List<Long> ids) {
+        baseMapper.deleteBatchIds(ids);
+    }
+
     @Transactional(readOnly = true)
     @Override
     public IPage<Goods> selectPage(Integer currentPage, Integer pageNum, Goods goods) {
         QueryWrapper<Goods> queryWrapper = new QueryWrapper<>();
-        queryWrapper.lambda().eq(Goods::getSellerId, goods.getSellerId());
+        if (!StringUtils.isEmpty(goods.getSellerId())) {
+            queryWrapper.lambda().eq(Goods::getSellerId, goods.getSellerId());
+        }
         if (!StringUtils.isEmpty(goods.getAuditStatus())) {
             queryWrapper.lambda().eq(Goods::getAuditStatus, goods.getAuditStatus());
         }

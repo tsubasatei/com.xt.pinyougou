@@ -30,6 +30,7 @@ public class GoodsController {
         try {
             String sellerId = SecurityContextHolder.getContext().getAuthentication().getName();
             goodsGroup.getGoods().setSellerId(sellerId);
+            goodsGroup.getGoods().setIsMarketable("1");
             goodsService.add(goodsGroup);
             return new Result(true, "添加成功");
         } catch (Exception e) {
@@ -68,6 +69,24 @@ public class GoodsController {
     @GetMapping("/{id}")
     public GoodsGroup findOne(@PathVariable Long id) {
         return goodsService.findOne(id);
+    }
+
+    @GetMapping("/updateMarketable/{id}/{marketable}")
+    public Result findOne(@PathVariable Long id, @PathVariable String marketable) {
+
+        try {
+            Goods goods = goodsService.getById(id);
+            goods.setIsMarketable(marketable);
+            goodsService.updateById(goods);
+            if ("1".equals(marketable)) {
+                return new Result(true, "上架成功");
+            }else  if ("0".equals(marketable)) {
+                return new Result(true, "下架成功");
+            }
+            return new Result(false, "更改失败");
+        } catch (Exception e) {
+            return new Result(false, e.getMessage());
+        }
     }
 
 }

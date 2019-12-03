@@ -1,4 +1,4 @@
-// 品牌服务
+// 商品服务
 app.service('goodsService', function ($http) {
 
     // 保存
@@ -23,6 +23,11 @@ app.service('goodsService', function ($http) {
     // 查询实体
     this.findOne = function (id) {
         return $http.get('/goods/' + id);
+    };
+
+    // 上/下架
+    this.updateMarketable = function(id, marketable) {
+        return $http.get('/goods/updateMarketable/' + id + '/' + marketable);
     }
 
 });

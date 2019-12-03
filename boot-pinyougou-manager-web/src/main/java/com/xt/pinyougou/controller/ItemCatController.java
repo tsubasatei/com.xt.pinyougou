@@ -114,5 +114,10 @@ public class ItemCatController {
             return new Result(false, ex.getMessage());
         }
     }
+
+    @GetMapping("/list")
+    public List<ItemCat> list () {
+        return itemCatService.list();
+    }
 }
 

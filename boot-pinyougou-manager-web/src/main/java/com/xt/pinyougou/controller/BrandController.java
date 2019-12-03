@@ -107,8 +107,7 @@ public class BrandController {
                 result.setMessage("删除失败！");
             }
         } catch (Exception e) {
-            result.setSuccess(true);
-            result.setMessage(e.getMessage());
+            return new Result(false, e.getMessage());
         }
         return result;
     }

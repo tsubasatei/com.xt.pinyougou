@@ -39,6 +39,12 @@ app.service('itemCatService', function ($http) {
             method: 'DELETE',
             url: '/itemCat/' + id
         });
+    };
+
+    // 全部列表
+    this.findAll = function() {
+        return $http.get('/itemCat/list');
     }
+
 
 });

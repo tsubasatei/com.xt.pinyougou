@@ -123,6 +123,7 @@ app.controller('typeTemplateController', function ($scope, $controller, typeTemp
     // 删除扩展属性行
     $scope.deleteTableRow = function (index) {
         $scope.entity.customAttributeItems.splice(index, 1);
-    }
+    };
+
 
 });

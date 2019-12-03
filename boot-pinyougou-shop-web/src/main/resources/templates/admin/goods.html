@@ -85,6 +85,13 @@
 		                                  <td>{{status[entity.auditStatus]}}</td>
 		                                  <td class="text-center">                                          
 		                                 	  <a class="btn bg-olive btn-xs" href="/admin/goods_edit.html#?id={{entity.id}}" >修改</a>
+
+		                                 	  <button class="btn bg-olive btn-xs" ng-click="updateMarketable(entity.id, 0)" ng-if="entity.auditStatus == 1 && entity.isMarketable == 1">
+                                                  上架
+                                              </button>
+		                                 	  <button class="btn bg-olive btn-xs" ng-click="updateMarketable(entity.id, 1)" ng-if="entity.auditStatus == 1 && entity.isMarketable == 0">
+                                                  下架
+                                              </button>
 		                                  </td>
 			                          </tr>
 			                      </tbody>

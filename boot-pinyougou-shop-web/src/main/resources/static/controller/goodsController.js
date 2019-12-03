@@ -254,5 +254,17 @@ app.controller('goodsController', function ($scope, $controller, $location, good
         } else {
             return false;
         }
+    };
+
+    // 上/下架
+    $scope.updateMarketable = function (id, marketable) {
+        goodsService.updateMarketable(id, marketable).success(
+            function (response) {
+                alert(response.message);
+                if (response.success) {
+                    $scope.reloadList();
+                }
+            }
+        )
     }
 });

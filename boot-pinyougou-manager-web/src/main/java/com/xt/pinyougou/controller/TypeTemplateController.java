@@ -150,5 +150,14 @@ public class TypeTemplateController {
         IPage<TypeTemplate> page = typeTemplateService.selectPage(currentPage, pageNum, typeTemplate);
         return page;
     }
+
+    /**
+     * 查询规格列表
+     */
+    @GetMapping("/findSpecList/{id}")
+    public List<Map> findSpecList(@PathVariable Long id) {
+        List<Map> list = typeTemplateService.findSpecList(id);
+        return list;
+    }
 }
 

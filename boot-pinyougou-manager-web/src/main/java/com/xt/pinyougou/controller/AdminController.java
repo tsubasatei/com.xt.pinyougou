@@ -52,4 +52,10 @@ public class AdminController {
     public String goods() {
         return "admin/goods";
     }
+
+    // 商品详情
+    @GetMapping("/goods_detail.html")
+    public String goodsDetail() {
+        return "admin/goods_detail";
+    }
 }
