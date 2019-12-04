@@ -58,4 +58,18 @@ public class AdminController {
     public String goodsDetail() {
         return "admin/goods_detail";
     }
+
+    // 广告类型管理
+    @GetMapping("/content_category.html")
+    public String contentCategory() {
+        return "admin/content_category";
+    }
+
+    // 广告管理
+    @GetMapping("/content.html")
+    public String content() {
+        return "admin/content";
+    }
+
+
 }
