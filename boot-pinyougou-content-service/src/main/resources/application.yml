@@ -14,11 +14,24 @@ spring:
     password: root
     url: jdbc:mysql:///pinyougoudb
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+  redis:
+    host: 192.168.0.105
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        min-idle: 0
+        max-idle: 8
+
 server:
   port: 8082
 
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    cache-enabled: true # 开启 Mybatis 的二级缓存
   # classpath后面写个星*，扫面所有模块
   mapper-locations: classpath*:/mapper/*.xml
+
+

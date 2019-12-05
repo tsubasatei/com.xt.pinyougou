@@ -57,6 +57,11 @@
             <artifactId>boot-pinyougou-pojo</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.xt.pinyougou</groupId>
+            <artifactId>boot-pinyougou-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
         <!-- 代码生成器相关 -->
         <dependency>

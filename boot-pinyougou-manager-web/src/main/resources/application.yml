@@ -22,6 +22,14 @@ spring:
       enabled: true
   thymeleaf:
     cache: false
+  redis:
+    host: 192.168.0.105
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        min-idle: 0
+        max-idle: 8
 
 mybatis-plus:
   global-config:
